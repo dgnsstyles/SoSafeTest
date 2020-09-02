@@ -34,6 +34,7 @@ class HomeController: UIViewController {
         searchInputView.setDimensions(height: 50, width: view.frame.width - 64)
         searchInputView.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 32)
         searchInputView.alpha = 0
+        searchInputView.delegate = self
         
         UIView.animate(withDuration: 2) {
             self.searchInputView.alpha = 1
@@ -82,3 +83,8 @@ extension HomeController: CLLocationManagerDelegate {
     }
 }
 
+extension HomeController: SearchInputActivationViewDelegate {
+    func presentSearchInputView() {
+        print("DEBUG: Handle present location input")
+    }
+}

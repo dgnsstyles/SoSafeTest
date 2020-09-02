@@ -8,9 +8,14 @@
 
 import UIKit
 
+protocol SearchInputActivationViewDelegate: class {
+    func presentSearchInputView()
+}
+
 class SearchInputView: UIView {
     // MARK: - Properties
     
+    weak var delegate: SearchInputActivationViewDelegate?
     private let indicationView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
@@ -39,9 +44,18 @@ class SearchInputView: UIView {
         
         addSubview(placeholderLabel)
         placeholderLabel.centerY(inView: self, leftAnchor: indicationView.rightAnchor, paddingLeft: 20)
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(presentShowSearchInputView))
+        addGestureRecognizer(tap)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Selectors
+    
+    @objc func presentShowSearchInputView() {
+        print(123)
     }
 }
