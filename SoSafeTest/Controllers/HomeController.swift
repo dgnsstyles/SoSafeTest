@@ -17,6 +17,8 @@ class HomeController: UIViewController {
     private let locationManager = CLLocationManager()
     
     private let searchInputView = SearchInputView()
+    private let buscarInputView = BuscarInputView()
+    
 // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,6 +50,18 @@ class HomeController: UIViewController {
         mapView.frame = view.frame
         mapView.showsUserLocation = true
         mapView.userTrackingMode = .follow
+    }
+    
+    func configureBuscarInputView() {
+        view.addSubview(buscarInputView)
+        buscarInputView.anchor(top: view.topAnchor, left: view.leftAnchor, right: view.rightAnchor, height: 200)
+        buscarInputView.alpha = 0
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.buscarInputView.alpha = 1
+        }) { _ in
+            print("DEBUG: Present Table View..")
+        }
     }
 
 }
@@ -85,6 +99,7 @@ extension HomeController: CLLocationManagerDelegate {
 
 extension HomeController: SearchInputActivationViewDelegate {
     func presentSearchInputView() {
-        print("DEBUG: Handle present location input")
+        searchInputView.alpha = 0
+        configureBuscarInputView()
     }
 }

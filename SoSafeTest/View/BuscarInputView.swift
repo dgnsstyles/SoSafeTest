@@ -8,12 +8,12 @@
 
 import UIKit
 
-class InputView: UIView {
+class BuscarInputView: UIView {
     
     // MARK: - Properties
     private let backButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(#imageLiteral(resourceName: <#T##String#>).withRenderingMode(.alwaysOriginal), for: .normal)
+        button.setImage(#imageLiteral(resourceName: "baseline_arrow_back_black_36dp-1").withRenderingMode(.alwaysOriginal), for: .normal)
         button.addTarget(self, action: #selector(handleBackTapped), for: .touchUpInside)
         return button
     }()
@@ -21,6 +21,7 @@ class InputView: UIView {
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
+        addShadow()
         addSubview(backButton)
         backButton.anchor(top: topAnchor, left: leftAnchor, paddingTop: 44, paddingLeft: 12, width: 24, height: 25)
     }
